@@ -37,7 +37,7 @@ COMPLEXITY = {
 SIZES = [
     "atoms", # 8 decimals AND smaller
     "soot", # 7 decimals
-    "sand", # 6 decimals
+    "rice", # 6 decimals
     "peas", # 5 decimals
     "marbles", # 4 decimals
     "golf balls", # 3 decimals
@@ -107,6 +107,14 @@ def visual_dec(n):
 
 def format_complexity(c):
     out = "{} = {}".format(c, COMPLEXITY[c])
+    return out
+
+def size_chart():
+    out = ""
+    for i in range(1, len(SIZES) + 1):
+        if i != 1:
+            out += ","
+        out += " {} {}".format("■" * i, SIZES[-i])
     return out
 
 A_LIST = []
@@ -214,6 +222,7 @@ def send_udp_packets(n):
         buf = b"1" * n
         dest = ("192.0.2.1", 31337) # 'TEST-NET-1' IP = unroutable
         s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.setblocking(0)
 
         """
         Make the socket 'non-blocking.'
@@ -514,6 +523,10 @@ TESTS = [
         "O(1)"
     ],
 ]
+
+# Sizes chart.
+print(size_chart())
+print()
 
 # Profile all tests N times.
 # List average run time.
