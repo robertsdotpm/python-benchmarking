@@ -45,6 +45,17 @@ SIZES = [
     "bowling balls" # 1 decimal
 ][::-1]
 
+ICONS = [
+    " ",
+    ".",
+    ",",
+    ";",
+    "o",
+    "0",
+    "8",
+    "#"
+][::-1]
+
 T = lambda: D(time.time())
 
 """
@@ -105,6 +116,13 @@ def visual_dec(n):
     i = i if i <= sizes_last else sizes_last
     return "■" * (((sizes_last - i) + 1))
 
+def icon_dec(n):
+    sizes_last = len(SIZES) - 1
+    i = count_right_zeros(n)
+    if i == None:
+        i = sizes_last
+    return ICONS[i]
+
 def format_complexity(c):
     out = "{} = {}".format(c, COMPLEXITY[c])
     return out
@@ -112,9 +130,7 @@ def format_complexity(c):
 def size_chart():
     out = ""
     for i in range(1, len(SIZES) + 1):
-        if i != 1:
-            out += ","
-        out += " {} {}".format("■" * i, SIZES[-i])
+        out += "      {} {} ({})".format(ICONS[-i], SIZES[-i], 9 - i)
     return out
 
 A_LIST = []
@@ -551,9 +567,10 @@ for test in TESTS:
 
     # Display result.
     avg = total / D(test_no)
-    print("{: >9} {: <40} {: >40}:  {: >30}".format(
+    print("{: >9} {: <40} {: <1} {: >40}:  {: >30}".format(
         visual_dec(avg),
         test_name,
+        icon_dec(avg),
         format_dec(avg),
         format_complexity(test_complex)
     ))
