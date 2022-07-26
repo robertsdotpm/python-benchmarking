@@ -217,6 +217,11 @@ def bind_dgram_sock():
     s.close()
     return end
 
+def time_time():
+    start = T()
+    x = T()
+    return T() - start
+
 def send_udp_packets(n):
     def closure():
         buf = b"1" * n
@@ -330,6 +335,12 @@ def tcp_echo_client():
     return end
 
 TESTS = [
+    [
+        "time()",
+        time_time,
+        VERY_SMALL_TEST,
+        "O(1)"
+    ],
     [
         "list append small int",
         list_append,

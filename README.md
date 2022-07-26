@@ -6,6 +6,7 @@ Open the raw file to view the data easier: https://raw.githubusercontent.com/rob
 ```
  ■ atoms, ■■ soot, ■■■ rice, ■■■■ peas, ■■■■■ marbles, ■■■■■■ golf balls, ■■■■■■■ tennis balls, ■■■■■■■■ bowling balls
 
+      ■■■ time()                                        0.0000012347133159637451171875 rice:                O(1) = excellent
        ■■ list append small int                          0.000000637637615203857421875 soot:                O(1) = excellent
        ■■ overhead of a func call                       0.0000006393167972564697265625 soot:                O(1) = excellent
        ■■ make a dic with one item                      0.0000007230675220489501953125 soot:                O(1) = excellent
