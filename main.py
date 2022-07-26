@@ -567,10 +567,13 @@ for test in TESTS:
 
     # Display result.
     avg = total / D(test_no)
-    print("{: >9} {: <40} {: <1} {: >40}:  {: >30}".format(
+    z = count_right_zeros(avg)
+    z = z + 1 if z <= len(SIZES) + 1 else len(SIZES)
+    print("{: >9} {: <40} {: <1} ({: <1}) {: >40}:  {: >30}".format(
         visual_dec(avg),
         test_name,
         icon_dec(avg),
+        z,
         format_dec(avg),
         format_complexity(test_complex)
     ))
@@ -578,6 +581,5 @@ for test in TESTS:
 
 
 """
-ip str to int with ipaddress module
 open file time
 """
