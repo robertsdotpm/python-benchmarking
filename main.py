@@ -130,7 +130,11 @@ def format_complexity(c):
 def size_chart():
     out = ""
     for i in range(1, len(SIZES) + 1):
-        out += "      {} {} ({})".format(ICONS[-i], SIZES[-i], 9 - i)
+        out += "      {} {} ({})".format(
+            ICONS[-i],
+            SIZES[-i],
+            i
+        )
     return out
 
 A_LIST = []
@@ -568,7 +572,7 @@ for test in TESTS:
     # Display result.
     avg = total / D(test_no)
     z = count_right_zeros(avg)
-    z = z + 1 if z <= len(SIZES) + 1 else len(SIZES)
+    z = (len(SIZES)) - min(z, len(SIZES))
     print("{: >9} {: <40} {: <1} ({: <1}) {: >40}:  {: >30}".format(
         visual_dec(avg),
         test_name,
