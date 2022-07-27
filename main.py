@@ -106,6 +106,17 @@ def count_right_zeros(n):
 
     return i
 
+def get_sig_digit(n):
+    as_str = "{0:f}".format(n)
+    parts = as_str.split(".")
+    if len(parts) == 2:
+        dec_part = parts[-1]
+        for ch in dec_part:
+            if ch != "0":
+                return ch
+    else:
+        return "0"
+
 def format_dec(n):
     as_str = "{0:f}".format(n)
     i = count_right_zeros(n)
@@ -113,7 +124,7 @@ def format_dec(n):
         # Format result with relatable size.
         sizes_last = len(SIZES) - 1
         i = i if i <= sizes_last else sizes_last
-        out = "%s %s" % (as_str, SIZES[i])
+        out = "%s (%s) %s" % (as_str, get_sig_digit(n), SIZES[i])
     else:
         out = as_str
 
@@ -598,7 +609,7 @@ for test in TESTS:
     avg = total / D(test_no)
     z = count_right_zeros(avg)
     z = (len(SIZES)) - min(z, len(SIZES))
-    out = "{: >9} {: <40} {: <1} ({: <1}: like {: <16}) {: >40}:  {: >30}".format(
+    out = "{: >9} {: <40} {: <1} ({: <1}: like {: <16}) {: >44}:  {: >30}".format(
         visual_dec(avg),
         test_name,
         icon_dec(avg),
