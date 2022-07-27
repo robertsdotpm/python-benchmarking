@@ -45,6 +45,18 @@ SIZES = [
     "bowling balls" # 1 decimal
 ][::-1]
 
+# https://colin-scott.github.io/personal_website/research/interactive_latency.html
+BALLPARK = [
+    "memory reference", # 100 ns memory ref
+    "1KB compression", # 1k with zippy = 4000 ns really
+    "LAN send",
+    "memory slice", # read 1,000,000 b from memory 151 us
+    "datacenter RTT",
+    "SSD read", # sequential read 1 ms
+    "gaming RTT", # 10 ms
+    "website RTT" # 100 ms
+][::-1]
+
 ICONS = [
     " ",
     ".",
@@ -126,6 +138,13 @@ def icon_dec(n):
 def format_complexity(c):
     out = "{} = {}".format(c, COMPLEXITY[c])
     return out
+
+def format_ballpark(n):
+    sizes_last = len(SIZES) - 1
+    i = count_right_zeros(n)
+    if i == None:
+        i = sizes_last
+    return BALLPARK[i]
 
 def size_chart():
     out = ""
@@ -579,11 +598,12 @@ for test in TESTS:
     avg = total / D(test_no)
     z = count_right_zeros(avg)
     z = (len(SIZES)) - min(z, len(SIZES))
-    out = "{: >9} {: <40} {: <1} ({: <1}) {: >40}:  {: >30}".format(
+    out = "{: >9} {: <40} {: <1} ({: <1}: like {: <16}) {: >40}:  {: >30}".format(
         visual_dec(avg),
         test_name,
         icon_dec(avg),
         z,
+        format_ballpark(avg),
         format_dec(avg),
         format_complexity(test_complex)
     )
