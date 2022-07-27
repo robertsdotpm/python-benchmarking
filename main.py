@@ -130,7 +130,9 @@ def format_complexity(c):
 def size_chart():
     out = ""
     for i in range(1, len(SIZES) + 1):
-        out += "      {} {} ({})".format(
+        if i > 1:
+            out += "      "
+        out += "{} {} ({})".format(
             ICONS[-i],
             SIZES[-i],
             i
@@ -555,12 +557,16 @@ TESTS = [
     ],
 ]
 
-# Sizes chart.
-print(size_chart())
+# Sort by zero no
+def zsort(sub_li):
+    return(sorted(sub_li, key=lambda x: x[1], reverse=True))  
+
+print("Running tests -- they are ordered so please wait a while . . .")
 print()
 
 # Profile all tests N times.
 # List average run time.
+results = []
 for test in TESTS:
     total = 0
     test_name, test_func, test_no, test_complex = test
@@ -569,19 +575,32 @@ for test in TESTS:
     for i in range(0, test_no):
         total += test_func()
 
-    # Display result.
+    # Format result.
     avg = total / D(test_no)
     z = count_right_zeros(avg)
     z = (len(SIZES)) - min(z, len(SIZES))
-    print("{: >9} {: <40} {: <1} ({: <1}) {: >40}:  {: >30}".format(
+    out = "{: >9} {: <40} {: <1} ({: <1}) {: >40}:  {: >30}".format(
         visual_dec(avg),
         test_name,
         icon_dec(avg),
         z,
         format_dec(avg),
         format_complexity(test_complex)
-    ))
+    )
 
+    # Store result.
+    results.append([out, z])
+
+# Sizes chart.
+print(size_chart())
+print()
+
+
+# Show output.
+results = zsort(results)
+for result in results:
+    out, _ = result
+    print(out)
 
 
 """
