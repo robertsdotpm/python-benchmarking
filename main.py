@@ -71,6 +71,9 @@ ICONS = [
 # Lets also use the alphabet as a way to relate the magnitude between numbers.
 ALPHA = "abcdefghijklmnopqrstuvwxyz"
 
+# Will be used for showing number of zeros.
+SUPERSCRIPT = "⁰¹²³⁴⁵⁶⁷⁸⁹"
+
 T = lambda: D(time.time())
 
 """
@@ -127,7 +130,7 @@ def format_dec(n):
         # Format result with relatable size.
         sizes_last = len(SIZES) - 1
         i = i if i <= sizes_last else sizes_last
-        out = "%s [%s] %s %s" % (as_str, get_sig_digit(n), SIZES[i], ALPHA[i])
+        out = "%s [%s%s] %s %s" % (as_str, get_sig_digit(n), SUPERSCRIPT[i], SIZES[i], ALPHA[i])
     else:
         out = as_str
 
@@ -613,10 +616,11 @@ for test in TESTS:
     avg = total / D(test_no)
     z = count_right_zeros(avg)
     z = (len(SIZES)) - min(z, len(SIZES))
-    out = "{: >9} [{: <1}{: <1} {: <1}] {: <42} {: <1}{: <1} ({: <1}: like {: <16}) {: >38}:  {: >20}".format(
+    out = "{: >9} [{: <1}{: <1}{: <1} {: <1}] {: <42} {: <1}{: <1} ({: <1}: like {: <16}) {: >38}:  {: >20}".format(
         visual_dec(avg),
         ALPHA[count_right_zeros(avg)],
         get_sig_digit(avg),
+        SUPERSCRIPT[count_right_zeros(avg)],
         icon_dec(avg),
         test_name,
         icon_dec(avg),
