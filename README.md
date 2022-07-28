@@ -7,38 +7,38 @@ Open the raw file to view the data easier: https://raw.githubusercontent.com/rob
 ```
   atoms (1)      . soot (2)      , rice (3)      : peas (4)      ; marbles (5)      | golf balls (6)      L tennis balls (7)      # bowling balls (8)
 
- ■■■■■■■■ [1# a] tcp con to google                          #a (8: like website RTT     )     0.122793126107 [1] bowling balls a:      O(1) = excellent
- ■■■■■■■■ [1# a] tcp echo client                            #a (8: like website RTT     )     0.189628982544 [1] bowling balls a:      O(1) = excellent
-    ■■■■■ [9; d] dns lookup google.com (cached prob)        ;d (5: like datacenter RTT  )        0.000915789604187 [9] marbles d:      O(1) = excellent
-     ■■■■ [5: e] send 10k udp packets                       :e (4: like memory slice    )          0.0000518298149096 [5] peas e:      O(1) = excellent
-     ■■■■ [2: e] send 100 b udp packets                     :e (4: like memory slice    )          0.0000299053192136 [2] peas e:      O(1) = excellent
-     ■■■■ [2: e] send 1k udp packets                        :e (4: like memory slice    )          0.0000279064178464 [2] peas e:      O(1) = excellent
-     ■■■■ [1: e] n in list[1000]                            :e (4: like memory slice    )          0.0000140520572666 [1] peas e:           O(n) = fair
-      ■■■ [6, f] bind dgram sock                            ,f (3: like LAN send        )         0.00000697255134582 [6] rice f:      O(1) = excellent
-      ■■■ [5, f] build stream sock                          ,f (3: like LAN send        )         0.00000597620010374 [5] rice f:      O(1) = excellent
-      ■■■ [5, f] build dgram sock                           ,f (3: like LAN send        )         0.00000598001480102 [5] rice f:      O(1) = excellent
-      ■■■ [2, f] create an async queue                      ,f (3: like LAN send        )         0.00000216451597184 [2] rice f:      O(1) = excellent
-      ■■■ [2, f] n in list[100]                             ,f (3: like LAN send        )         0.00000202749180779 [2] rice f:           O(n) = fair
-      ■■■ [2, f] ip bytes to ipaddress                      ,f (3: like LAN send        )          0.0000024115316864 [2] rice f:      O(1) = excellent
-      ■■■ [1, f] time()                                     ,f (3: like LAN send        )         0.00000116483306886 [1] rice f:      O(1) = excellent
-      ■■■ [1, f] add to an async queue                      ,f (3: like LAN send        )         0.00000112941336637 [1] rice f:      O(1) = excellent
-      ■■■ [1, f] build async event                          ,f (3: like LAN send        )         0.00000115906953816 [1] rice f:      O(1) = excellent
-      ■■■ [1, f] str in list[100]                           ,f (3: like LAN send        )         0.00000119600105288 [1] rice f:           O(n) = fair
-       ■■ [9. g] get from an async queue                    .g (2: like 1KB compression )        0.000000950854301537 [9] soot g:      O(1) = excellent
-       ■■ [8. g] n in list[10]                              .g (2: like 1KB compression )        0.000000808735847551 [8] soot g:           O(n) = fair
-       ■■ [8. g] 1k bytes to str                            .g (2: like 1KB compression )        0.000000833257198411 [8] soot g:           O(n) = fair
-       ■■ [7. g] set async event                            .g (2: like 1KB compression )        0.000000732600212165 [7] soot g:      O(1) = excellent
-       ■■ [7. g] n in list[5]                               .g (2: like 1KB compression )        0.000000716044187603 [7] soot g:           O(n) = fair
-       ■■ [7. g] str in list[10]                            .g (2: like 1KB compression )        0.000000724999904696 [7] soot g:           O(n) = fair
-       ■■ [7. g] 1k str to bytes                            .g (2: like 1KB compression )        0.000000723023414671 [7] soot g:           O(n) = fair
-       ■■ [6. g] list append small int                      .g (2: like 1KB compression )        0.000000636410474827 [6] soot g:      O(1) = excellent
-       ■■ [6. g] overhead of a func call                    .g (2: like 1KB compression )        0.000000645185709053 [6] soot g:      O(1) = excellent
-       ■■ [6. g] make a dic with one item                   .g (2: like 1KB compression )        0.000000620331049009 [6] soot g:      O(1) = excellent
-       ■■ [6. g] dict key lookup from single item dic       .g (2: like 1KB compression )         0.00000063627123837 [6] soot g:      O(1) = excellent
-       ■■ [6. g] make a dic with 4 items                    .g (2: like 1KB compression )        0.000000679139614154 [6] soot g:      O(1) = excellent
-       ■■ [6. g] dict key lookup from 4 item dic            .g (2: like 1KB compression )        0.000000600421667156 [6] soot g:      O(1) = excellent
-       ■■ [6. g] if x == n else ..                          .g (2: like 1KB compression )        0.000000619029760415 [6] soot g:      O(1) = excellent
-       ■■ [6. g] str in list[5]                             .g (2: like 1KB compression )        0.000000659260511457 [6] soot g:           O(n) = fair
-       ■■ [6. g] store ip tuple in dic                      .g (2: like 1KB compression )        0.000000627772569718 [6] soot g:      O(1) = excellent
+ ■■■■■■■■ [1a #] tcp echo client                            #a (8: like website RTT     )     0.188696670532 [1] bowling balls a:      O(1) = excellent
+  ■■■■■■■ [7b L] dns lookup google.com (cached prob)        Lb (7: like gaming RTT      )     0.0763056278229 [7] tennis balls b:      O(1) = excellent
+  ■■■■■■■ [2b L] tcp con to google                          Lb (7: like gaming RTT      )     0.0223058223724 [2] tennis balls b:      O(1) = excellent
+     ■■■■ [5e :] send 10k udp packets                       :e (4: like memory slice    )          0.0000538222789759 [5] peas e:      O(1) = excellent
+     ■■■■ [3e :] send 1k udp packets                        :e (4: like memory slice    )          0.0000328967571257 [3] peas e:      O(1) = excellent
+     ■■■■ [2e :] send 100 b udp packets                     :e (4: like memory slice    )          0.0000249207019805 [2] peas e:      O(1) = excellent
+     ■■■■ [1e :] n in list[1000]                            :e (4: like memory slice    )          0.0000144517898566 [1] peas e:           O(n) = fair
+     ■■■■ [1e :] bind dgram sock                            :e (4: like memory slice    )          0.0000109620094299 [1] peas e:      O(1) = excellent
+      ■■■ [5f ,] build dgram sock                           ,f (3: like LAN send        )         0.00000598359107971 [5] rice f:      O(1) = excellent
+      ■■■ [3f ,] build stream sock                          ,f (3: like LAN send        )         0.00000398707389831 [3] rice f:      O(1) = excellent
+      ■■■ [2f ,] create an async queue                      ,f (3: like LAN send        )         0.00000233536243393 [2] rice f:      O(1) = excellent
+      ■■■ [2f ,] n in list[100]                             ,f (3: like LAN send        )         0.00000207922744726 [2] rice f:           O(n) = fair
+      ■■■ [2f ,] ip bytes to ipaddress                      ,f (3: like LAN send        )         0.00000238977050744 [2] rice f:      O(1) = excellent
+      ■■■ [1f ,] time()                                     ,f (3: like LAN send        )         0.00000127546715738 [1] rice f:      O(1) = excellent
+      ■■■ [1f ,] add to an async queue                      ,f (3: like LAN send        )         0.00000117303323741 [1] rice f:      O(1) = excellent
+      ■■■ [1f ,] get from an async queue                    ,f (3: like LAN send        )         0.00000101852607727 [1] rice f:      O(1) = excellent
+      ■■■ [1f ,] build async event                          ,f (3: like LAN send        )         0.00000127411794661 [1] rice f:      O(1) = excellent
+      ■■■ [1f ,] str in list[100]                           ,f (3: like LAN send        )         0.00000118250846867 [1] rice f:           O(n) = fair
+       ■■ [8g .] set async event                            .g (2: like 1KB compression )         0.00000088778686526 [8] soot g:      O(1) = excellent
+       ■■ [8g .] n in list[10]                              .g (2: like 1KB compression )        0.000000869704484933 [8] soot g:           O(n) = fair
+       ■■ [7g .] list append small int                      .g (2: like 1KB compression )        0.000000751696825036 [7] soot g:      O(1) = excellent
+       ■■ [7g .] make a dic with 4 items                    .g (2: like 1KB compression )        0.000000717749118812 [7] soot g:      O(1) = excellent
+       ■■ [7g .] n in list[5]                               .g (2: like 1KB compression )        0.000000764899730682 [7] soot g:           O(n) = fair
+       ■■ [7g .] str in list[10]                            .g (2: like 1KB compression )        0.000000718265533504 [7] soot g:           O(n) = fair
+       ■■ [7g .] 1k str to bytes                            .g (2: like 1KB compression )        0.000000747452974382 [7] soot g:           O(n) = fair
+       ■■ [7g .] 1k bytes to str                            .g (2: like 1KB compression )        0.000000793936014212 [7] soot g:           O(n) = fair
+       ■■ [6g .] overhead of a func call                    .g (2: like 1KB compression )        0.000000662959814089 [6] soot g:      O(1) = excellent
+       ■■ [6g .] make a dic with one item                   .g (2: like 1KB compression )        0.000000603074312241 [6] soot g:      O(1) = excellent
+       ■■ [6g .] dict key lookup from single item dic       .g (2: like 1KB compression )        0.000000634622812281 [6] soot g:      O(1) = excellent
+       ■■ [6g .] dict key lookup from 4 item dic            .g (2: like 1KB compression )        0.000000645556688318 [6] soot g:      O(1) = excellent
+       ■■ [6g .] str in list[5]                             .g (2: like 1KB compression )        0.000000687805652668 [6] soot g:           O(n) = fair
+       ■■ [6g .] store ip tuple in dic                      .g (2: like 1KB compression )        0.000000665157079742 [6] soot g:      O(1) = excellent
+       ■■ [5g .] if x == n else ..                          .g (2: like 1KB compression )        0.000000587586641362 [5] soot g:      O(1) = excellent
  ```
 
