@@ -10,7 +10,7 @@ import asyncio
 import socket
 
 # Allow for very small measurements.
-getcontext().prec = 25
+getcontext().prec = 16
 
 # Enums used to describe how many tests to run.
 FAST_TESTS = 0
@@ -124,7 +124,7 @@ def format_dec(n):
         # Format result with relatable size.
         sizes_last = len(SIZES) - 1
         i = i if i <= sizes_last else sizes_last
-        out = "%s (%s) %s" % (as_str, get_sig_digit(n), SIZES[i])
+        out = "%s [%s] %s" % (as_str, get_sig_digit(n), SIZES[i])
     else:
         out = as_str
 
@@ -609,8 +609,9 @@ for test in TESTS:
     avg = total / D(test_no)
     z = count_right_zeros(avg)
     z = (len(SIZES)) - min(z, len(SIZES))
-    out = "{: >9} {: <40} {: <1} ({: <1}: like {: <16}) {: >44}:  {: >30}".format(
+    out = "{: >9} [{: <1}] {: <40} {: <1} ({: <1}: like {: <16}) {: >35}:  {: >30}".format(
         visual_dec(avg),
+        get_sig_digit(avg),
         test_name,
         icon_dec(avg),
         z,
