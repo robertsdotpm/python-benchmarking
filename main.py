@@ -74,6 +74,24 @@ ALPHA = "abcdefghijklmnopqrstuvwxyz"
 # Will be used for showing number of zeros.
 SUPERSCRIPT = "⁰¹²³⁴⁵⁶⁷⁸⁹"
 
+ROUNDED = [
+    # milli
+    ["00", "ms"],
+    ["0", "ms"],
+    ["", "ms"],
+
+    # micro
+    ["00", "µs"],
+    ["0", "µs"],
+    ["", "µs"],
+
+    # nano
+    ["00", "ns"],
+    ["0", "ns"],
+    ["", "ns"]
+]
+
+
 T = lambda: D(time.time())
 
 """
@@ -136,6 +154,14 @@ def format_dec(n):
 
     return out
 
+def format_rounded(n):
+    as_str = "{0:f}".format(n)
+    i = count_right_zeros(n)
+    padding, units = ROUNDED[i]
+    dec_p = as_str.split(".")[-1]
+    padding = dec_p[i + 1:i + 1 + 2]
+    return [padding, units]
+
 def visual_dec(n):
     sizes_last = len(SIZES) - 1
     i = count_right_zeros(n)
@@ -174,6 +200,25 @@ def size_chart():
             SIZES[-i],
             i
         )
+    return out
+
+def units_chart():
+    info = [
+        " 1s 1000x > 1ms 1000x > 1µs 1000x > 1ns",
+        "1s = 1000ms",
+        "1ms = 1000µs",
+        "1µs = 1000ns",
+        "1s = 1,000,000,000ns",
+    ]
+    out = ""
+    i = 0
+    for s in [info[0]]:
+        if i:
+            out += "      "
+
+        out += s
+        i += 1
+
     return out
 
 A_LIST = []
@@ -616,12 +661,14 @@ for test in TESTS:
     avg = total / D(test_no)
     z = count_right_zeros(avg)
     z = (len(SIZES)) - min(z, len(SIZES))
-    out = "{: >9} [{: <1}{: <1}{: <1} {: <1}] {: <42} {: <1}{: <1} ({: <1}: like {: <16}) {: >38}:  {: >20}".format(
+    out = "{: >9} [{: <1}{: <1} {: <1}{: <2} {: <1}] {: <2}: {: <42} {: <1}{: <1} ({: <1}: like {: <16}) {: >38}:  {: >20}".format(
         visual_dec(avg),
+        SUPERSCRIPT[count_right_zeros(avg)],
         ALPHA[count_right_zeros(avg)],
         get_sig_digit(avg),
-        SUPERSCRIPT[count_right_zeros(avg)],
+        format_rounded(avg)[0],
         icon_dec(avg),
+        format_rounded(avg)[1],
         test_name,
         icon_dec(avg),
         ALPHA[count_right_zeros(avg)],
@@ -636,6 +683,7 @@ for test in TESTS:
 
 # Sizes chart.
 print(size_chart())
+print(units_chart())
 print()
 
 
