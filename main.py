@@ -615,8 +615,8 @@ for test in TESTS:
     z = (len(SIZES)) - min(z, len(SIZES))
     out = "{: >9} [{: <1}{: <1} {: <1}] {: <42} {: <1}{: <1} ({: <1}: like {: <16}) {: >38}:  {: >20}".format(
         visual_dec(avg),
-        get_sig_digit(avg),
         ALPHA[count_right_zeros(avg)],
+        get_sig_digit(avg),
         icon_dec(avg),
         test_name,
         icon_dec(avg),
