@@ -61,10 +61,10 @@ ICONS = [
     " ",
     ".",
     ",",
+    ":",
     ";",
-    "o",
-    "0",
-    "8",
+    "|",
+    "L",
     "#"
 ][::-1]
 
@@ -609,9 +609,10 @@ for test in TESTS:
     avg = total / D(test_no)
     z = count_right_zeros(avg)
     z = (len(SIZES)) - min(z, len(SIZES))
-    out = "{: >9} [{: <1}] {: <40} {: <1} ({: <1}: like {: <16}) {: >35}:  {: >30}".format(
+    out = "{: >9} [{: <1}{: <1}] {: <40} {: <1} ({: <1}: like {: <16}) {: >35}:  {: >30}".format(
         visual_dec(avg),
         get_sig_digit(avg),
+        icon_dec(avg),
         test_name,
         icon_dec(avg),
         z,
