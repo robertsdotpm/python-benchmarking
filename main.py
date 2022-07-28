@@ -165,8 +165,9 @@ def size_chart():
     for i in range(1, len(SIZES) + 1):
         if i > 1:
             out += "      "
-        out += "{} {} ({})".format(
+        out += "{}{} {} ({})".format(
             ICONS[-i],
+            ALPHA[len(SIZES) - i],
             SIZES[-i],
             i
         )

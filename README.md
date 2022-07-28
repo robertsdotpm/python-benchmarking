@@ -5,8 +5,8 @@ I was interested in the performance cost of some common operations in Python. So
 Open the raw file to view the data easier: https://raw.githubusercontent.com/robertsdotpm/python-benchmarking/main/README.md
 
 ```
-  atoms (1)      . soot (2)      , rice (3)      : peas (4)      ; marbles (5)      | golf balls (6)      L tennis balls (7)      # bowling balls (8)
-
+ h atoms (1)      .g soot (2)      ,f rice (3)      :e peas (4)      ;d marbles (5)      |c golf balls (6)      Lb tennis balls (7)      #a bowling balls (8)
+ 
  ■■■■■■■■ [1a #] tcp echo client                            #a (8: like website RTT     )     0.188696670532 [1] bowling balls a:      O(1) = excellent
   ■■■■■■■ [7b L] dns lookup google.com (cached prob)        Lb (7: like gaming RTT      )     0.0763056278229 [7] tennis balls b:      O(1) = excellent
   ■■■■■■■ [2b L] tcp con to google                          Lb (7: like gaming RTT      )     0.0223058223724 [2] tennis balls b:      O(1) = excellent
