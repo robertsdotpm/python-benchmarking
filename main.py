@@ -159,7 +159,8 @@ def format_rounded(n):
     i = count_right_zeros(n)
     padding, units = ROUNDED[i]
     dec_p = as_str.split(".")[-1]
-    padding = dec_p[i + 1:i + 1 + 2]
+    if len(padding):
+        padding = dec_p[i + 1:i + 1 + len(padding)]
     return [padding, units]
 
 def visual_dec(n):
