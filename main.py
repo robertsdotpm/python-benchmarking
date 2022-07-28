@@ -91,7 +91,6 @@ ROUNDED = [
     ["", "ns"]
 ]
 
-
 T = lambda: D(time.time())
 
 """
@@ -153,6 +152,18 @@ def format_dec(n):
         out = as_str
 
     return out
+
+def format_speed(n):
+    as_str = "{0:f}".format(n)
+    i = count_right_zeros(n)
+    if i >= 6:
+        speed = "fast"
+    elif i >= 3:
+        speed = "brisk"
+    else:
+        speed = "slow"
+
+    return speed
 
 def format_rounded(n):
     as_str = "{0:f}".format(n)
@@ -662,7 +673,7 @@ for test in TESTS:
     avg = total / D(test_no)
     z = count_right_zeros(avg)
     z = (len(SIZES)) - min(z, len(SIZES))
-    out = "{: >9} [{: <1}{: <1} {: <1}{: <2} {: <1}] {: <2}: {: <42} {: <1}{: <1} ({: <1}: like {: <16}) {: >38}:  {: >20}".format(
+    out = "{: >9} [{: <1}{: <1} {: <1}{: <2} {: <1}] {: <2}: {: <42} {: >5} {: <1}{: <1} ({: <1}: like {: <16}) {: >38}:  {: >20}".format(
         visual_dec(avg),
         SUPERSCRIPT[count_right_zeros(avg)],
         ALPHA[count_right_zeros(avg)],
@@ -671,6 +682,7 @@ for test in TESTS:
         icon_dec(avg),
         format_rounded(avg)[1],
         test_name,
+        format_speed(avg),
         icon_dec(avg),
         ALPHA[count_right_zeros(avg)],
         z,
