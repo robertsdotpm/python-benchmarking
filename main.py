@@ -680,7 +680,7 @@ for test in TESTS:
     )
 
     # Store result.
-    results.append([out, (z * 10) + int(get_sig_digit(avg))])
+    results.append([out, avg])
 
 # Sizes chart.
 print(size_chart())
