@@ -5,41 +5,45 @@ I was interested in the performance cost of some common operations in Python. So
 Open the raw file to view the data easier: https://raw.githubusercontent.com/robertsdotpm/python-benchmarking/main/README.md
 
 ```
- h atoms (1)      .g soot (2)      ,f rice (3)      :e peas (4)      ;d marbles (5)      |c golf balls (6)      Lb tennis balls (7)      #a bowling balls (8)
+Based on average death probability except for lighting strike.
+These sizes reflect the number of decimal places.
+
+❤️ a heart disease (1)      🚗 b vehicle crash (2)      💧 c drowning (3)      🛶 d canoe death (4)      🪂 e sky diving (5)      ⚡ f lightning strike (6)      ✈ g plane crash (7)      🦈 h shark attack (8)
  1s 1000x > 1ms 1000x > 1µs 1000x > 1ns
 
- ■■■■■■■■ [⁰a 190 #] ms: tcp echo client                             slow #a (8: like website RTT     )    0.190159368515 [1⁰] bowling balls a:      O(1) = excellent
- ■■■■■■■■ [⁰a 140 #] ms: dns lookup google.com (cached prob)         slow #a (8: like website RTT     )    0.140346503258 [1⁰] bowling balls a:      O(1) = excellent
-  ■■■■■■■ [¹b 23  L] ms: tcp con to google                           slow Lb (7: like gaming RTT      )    0.0237961053848 [2¹] tennis balls b:      O(1) = excellent
-     ■■■■ [⁴e 46  :] µs: send 10k udp packets                       brisk :e (4: like memory slice    )         0.0000468430519092 [4⁴] peas e:      O(1) = excellent
-     ■■■■ [⁴e 27  :] µs: send 1k udp packets                        brisk :e (4: like memory slice    )         0.0000279068946833 [2⁴] peas e:      O(1) = excellent
-     ■■■■ [⁴e 22  :] µs: send 100 b udp packets                     brisk :e (4: like memory slice    )         0.0000224039554594 [2⁴] peas e:      O(1) = excellent
-     ■■■■ [⁴e 14  :] µs: n in list[1000]                            brisk :e (4: like memory slice    )         0.0000143519878392 [1⁴] peas e:           O(n) = fair
-      ■■■ [⁵f 7   ,] µs: build dgram sock                           brisk ,f (3: like LAN send        )        0.00000797271728514 [7⁵] rice f:      O(1) = excellent
-      ■■■ [⁵f 6   ,] µs: build stream sock                          brisk ,f (3: like LAN send        )        0.00000697636604308 [6⁵] rice f:      O(1) = excellent
-      ■■■ [⁵f 4   ,] µs: bind dgram sock                            brisk ,f (3: like LAN send        )        0.00000498247146607 [4⁵] rice f:      O(1) = excellent
-      ■■■ [⁵f 2   ,] µs: ip bytes to ipaddress                      brisk ,f (3: like LAN send        )        0.00000236171483951 [2⁵] rice f:      O(1) = excellent
-      ■■■ [⁵f 2   ,] µs: create an async queue                      brisk ,f (3: like LAN send        )        0.00000235852456026 [2⁵] rice f:      O(1) = excellent
-      ■■■ [⁵f 2   ,] µs: 1k bytes to str                            brisk ,f (3: like LAN send        )        0.00000212527322747 [2⁵] rice f:           O(n) = fair
-      ■■■ [⁵f 2   ,] µs: n in list[100]                             brisk ,f (3: like LAN send        )        0.00000202596425987 [2⁵] rice f:           O(n) = fair
-      ■■■ [⁵f 2   ,] µs: 1k str to bytes                            brisk ,f (3: like LAN send        )        0.00000201060461971 [2⁵] rice f:           O(n) = fair
-      ■■■ [⁵f 1   ,] µs: build async event                          brisk ,f (3: like LAN send        )        0.00000120729970933 [1⁵] rice f:      O(1) = excellent
-      ■■■ [⁵f 1   ,] µs: str in list[100]                           brisk ,f (3: like LAN send        )        0.00000120620274544 [1⁵] rice f:           O(n) = fair
-      ■■■ [⁵f 1   ,] µs: add to an async queue                      brisk ,f (3: like LAN send        )        0.00000118769288048 [1⁵] rice f:      O(1) = excellent
-      ■■■ [⁵f 1   ,] µs: time()                                     brisk ,f (3: like LAN send        )        0.00000116114020354 [1⁵] rice f:      O(1) = excellent
-      ■■■ [⁵f 1   ,] µs: get from an async queue                    brisk ,f (3: like LAN send        )         0.0000011018276214 [1⁵] rice f:      O(1) = excellent
-       ■■ [⁶g 852 .] ns: n in list[10]                               fast .g (2: like 1KB compression )       0.000000852153539726 [8⁶] soot g:           O(n) = fair
-       ■■ [⁶g 755 .] ns: set async event                             fast .g (2: like 1KB compression )       0.000000755170822204 [7⁶] soot g:      O(1) = excellent
-       ■■ [⁶g 743 .] ns: n in list[5]                                fast .g (2: like 1KB compression )       0.000000743911027969 [7⁶] soot g:           O(n) = fair
-       ■■ [⁶g 722 .] ns: make a dic with 4 items                     fast .g (2: like 1KB compression )       0.000000722963333124 [7⁶] soot g:      O(1) = excellent
-       ■■ [⁶g 711 .] ns: dict key lookup from 4 item dic             fast .g (2: like 1KB compression )       0.000000711860418336 [7⁶] soot g:      O(1) = excellent
-       ■■ [⁶g 694 .] ns: str in list[10]                             fast .g (2: like 1KB compression )        0.00000069463634498 [6⁶] soot g:           O(n) = fair
-       ■■ [⁶g 683 .] ns: str in list[5]                              fast .g (2: like 1KB compression )       0.000000683158397733 [6⁶] soot g:           O(n) = fair
-       ■■ [⁶g 659 .] ns: dict key lookup from single item dic        fast .g (2: like 1KB compression )       0.000000659031152778 [6⁶] soot g:      O(1) = excellent
-       ■■ [⁶g 652 .] ns: overhead of a func call                     fast .g (2: like 1KB compression )       0.000000652029514357 [6⁶] soot g:      O(1) = excellent
-       ■■ [⁶g 632 .] ns: if x == n else ..                           fast .g (2: like 1KB compression )       0.000000632991313993 [6⁶] soot g:      O(1) = excellent
-       ■■ [⁶g 630 .] ns: list append small int                       fast .g (2: like 1KB compression )       0.000000630065679606 [6⁶] soot g:      O(1) = excellent
-       ■■ [⁶g 629 .] ns: make a dic with one item                    fast .g (2: like 1KB compression )       0.000000629672288964 [6⁶] soot g:      O(1) = excellent
-       ■■ [⁶g 623 .] ns: store ip tuple in dic                       fast .g (2: like 1KB compression )       0.000000623999595701 [6⁶] soot g:      O(1) = excellent
- ```
+ ■■■■■■■■ [⁰a 192 ❤️] ms: tcp echo client                             slow ❤️ a (8: like website RTT     ) 0.192783308029        [1⁰] heart disease    a:  O(1) = excellent
+ ■■■■■■■■ [⁰a 112 ❤️] ms: dns lookup google.com (cached prob)         slow ❤️ a (8: like website RTT     ) 0.112471532821        [1⁰] heart disease    a:  O(1) = excellent
+  ■■■■■■■ [¹b 64  🚗] ms: tcp con to google                           slow 🚗 b (7: like gaming RTT      ) 0.0640018939972       [6¹] vehicle crash    b:  O(1) = excellent
+     ■■■■ [⁴e 38  🪂] µs: send 10k udp packets                       brisk 🪂 e (4: like memory slice    ) 0.0000381512641909    [3⁴] sky diving       e:  O(1) = excellent
+     ■■■■ [⁴e 24  🪂] µs: send 100 b udp packets                     brisk 🪂 e (4: like memory slice    ) 0.0000249960422518    [2⁴] sky diving       e:  O(1) = excellent
+     ■■■■ [⁴e 19  🪂] µs: send 1k udp packets                        brisk 🪂 e (4: like memory slice    ) 0.0000190134048462    [1⁴] sky diving       e:  O(1) = excellent
+     ■■■■ [⁴e 13  🪂] µs: n in list[1000]                            brisk 🪂 e (4: like memory slice    ) 0.0000137040615082    [1⁴] sky diving       e:      O(n) = fair
+      ■■■ [⁵f 8   ⚡] µs: build stream sock                          brisk ⚡ f (3: like LAN send        ) 0.0000080006122589    [8⁵] lightning strike f:  O(1) = excellent
+      ■■■ [⁵f 6   ⚡] µs: bind dgram sock                            brisk ⚡ f (3: like LAN send        ) 0.00000699925422667   [6⁵] lightning strike f:  O(1) = excellent
+      ■■■ [⁵f 5   ⚡] µs: build dgram sock                           brisk ⚡ f (3: like LAN send        ) 0.00000599980354308   [5⁵] lightning strike f:  O(1) = excellent
+      ■■■ [⁵f 2   ⚡] µs: ip bytes to ipaddress                      brisk ⚡ f (3: like LAN send        ) 0.00000241759252532   [2⁵] lightning strike f:  O(1) = excellent
+      ■■■ [⁵f 1   ⚡] µs: n in list[100]                             brisk ⚡ f (3: like LAN send        ) 0.00000198112964627   [1⁵] lightning strike f:      O(n) = fair
+      ■■■ [⁵f 1   ⚡] µs: create an async queue                      brisk ⚡ f (3: like LAN send        ) 0.00000150759077064   [1⁵] lightning strike f:  O(1) = excellent
+      ■■■ [⁵f 1   ⚡] µs: time()                                     brisk ⚡ f (3: like LAN send        ) 0.000001198502779     [1⁵] lightning strike f:  O(1) = excellent
+      ■■■ [⁵f 1   ⚡] µs: str in list[100]                           brisk ⚡ f (3: like LAN send        ) 0.00000108184647561   [1⁵] lightning strike f:      O(n) = fair
+       ■■ [⁶g 970 ✈] ns: make a dic with 4 items                     fast ✈ g (2: like 1KB compression ) 0.000000970860242832  [9⁶] plane crash      g:  O(1) = excellent
+       ■■ [⁶g 965 ✈] ns: add to an async queue                       fast ✈ g (2: like 1KB compression ) 0.000000965698719029  [9⁶] plane crash      g:  O(1) = excellent
+       ■■ [⁶g 930 ✈] ns: build async event                           fast ✈ g (2: like 1KB compression ) 0.000000930807113633  [9⁶] plane crash      g:  O(1) = excellent
+       ■■ [⁶g 928 ✈] ns: get environmental variable                  fast ✈ g (2: like 1KB compression ) 0.000000928055763237  [9⁶] plane crash      g:  O(1) = excellent
+       ■■ [⁶g 923 ✈] ns: dict key lookup from single item dic        fast ✈ g (2: like 1KB compression ) 0.00000092379164694   [9⁶] plane crash      g:  O(1) = excellent
+       ■■ [⁶g 875 ✈] ns: get from an async queue                     fast ✈ g (2: like 1KB compression ) 0.000000875832319241  [8⁶] plane crash      g:  O(1) = excellent
+       ■■ [⁶g 820 ✈] ns: 1k bytes to str                             fast ✈ g (2: like 1KB compression ) 0.000000820837020867  [8⁶] plane crash      g:      O(n) = fair
+       ■■ [⁶g 795 ✈] ns: n in list[10]                               fast ✈ g (2: like 1KB compression ) 0.000000795756816851  [7⁶] plane crash      g:      O(n) = fair
+       ■■ [⁶g 759 ✈] ns: 1k str to bytes                             fast ✈ g (2: like 1KB compression ) 0.000000759049415577  [7⁶] plane crash      g:      O(n) = fair
+       ■■ [⁶g 754 ✈] ns: n in list[5]                                fast ✈ g (2: like 1KB compression ) 0.000000754710197454  [7⁶] plane crash      g:      O(n) = fair
+       ■■ [⁶g 742 ✈] ns: dict key lookup from 4 item dic             fast ✈ g (2: like 1KB compression ) 0.000000742240667334  [7⁶] plane crash      g:  O(1) = excellent
+       ■■ [⁶g 741 ✈] ns: set async event                             fast ✈ g (2: like 1KB compression ) 0.000000741263389591  [7⁶] plane crash      g:  O(1) = excellent
+       ■■ [⁶g 728 ✈] ns: str in list[10]                             fast ✈ g (2: like 1KB compression ) 0.000000728814840318  [7⁶] plane crash      g:      O(n) = fair
+       ■■ [⁶g 717 ✈] ns: make a dic with one item                    fast ✈ g (2: like 1KB compression ) 0.000000717132329931  [7⁶] plane crash      g:  O(1) = excellent
+       ■■ [⁶g 684 ✈] ns: store ip tuple in dic                       fast ✈ g (2: like 1KB compression ) 0.000000684214353567  [6⁶] plane crash      g:  O(1) = excellent
+       ■■ [⁶g 680 ✈] ns: overhead of a func call                     fast ✈ g (2: like 1KB compression ) 0.000000680716991418  [6⁶] plane crash      g:  O(1) = excellent
+       ■■ [⁶g 678 ✈] ns: str in list[5]                              fast ✈ g (2: like 1KB compression ) 0.000000678245306009  [6⁶] plane crash      g:      O(n) = fair
+       ■■ [⁶g 667 ✈] ns: list append small int                       fast ✈ g (2: like 1KB compression ) 0.000000667293071744  [6⁶] plane crash      g:  O(1) = excellent
+       ■■ [⁶g 651 ✈] ns: if x == n else ..                           fast ✈ g (2: like 1KB compression ) 0.000000651389598842  [6⁶] plane crash      g:  O(1) = excellent
+```
 

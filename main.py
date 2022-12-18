@@ -11,6 +11,7 @@ import socket
 
 # Allow for very small measurements.
 getcontext().prec = 12
+os.environ['TEST_ENV_VAR'] = 'something'
 
 # Enums used to describe how many tests to run.
 FAST_TESTS = 0
@@ -35,14 +36,14 @@ COMPLEXITY = {
 
 # Human-friendly way to relate small decimal numbers.
 SIZES = [
-    "atoms", # 8 decimals AND smaller
-    "soot", # 7 decimals
-    "rice", # 6 decimals
-    "peas", # 5 decimals
-    "marbles", # 4 decimals
-    "golf balls", # 3 decimals
-    "tennis balls", # 2 decimals
-    "bowling balls" # 1 decimal
+    "shark attack", # 8 decimals AND smaller
+    "plane crash", # 7 decimals
+    "lightning strike", # 6 decimals
+    "sky diving", # 5 decimals
+    "canoe death", # 4 decimals
+    "drowning", # 3 decimals
+    "vehicle crash", # 2 decimals
+    "heart disease" # 1 decimal
 ][::-1]
 
 # https://colin-scott.github.io/personal_website/research/interactive_latency.html
@@ -58,14 +59,14 @@ BALLPARK = [
 ][::-1]
 
 ICONS = [
-    " ",
-    ".",
-    ",",
-    ":",
-    ";",
-    "|",
-    "L",
-    "#"
+    "🦈",
+    "✈",
+    "⚡", # smaller
+    "🪂",
+    "🛶",
+    "💧",
+    "🚗",
+    "❤️"
 ][::-1]
 
 # Lets also use the alphabet as a way to relate the magnitude between numbers.
@@ -147,7 +148,10 @@ def format_dec(n):
         # Format result with relatable size.
         sizes_last = len(SIZES) - 1
         i = i if i <= sizes_last else sizes_last
-        out = "%s [%s%s] %s %s" % (as_str, get_sig_digit(n), SUPERSCRIPT[i], SIZES[i], ALPHA[i])
+        # {: >45}
+        #   0.00000134767293932 [1⁵] lightning strike f
+        # "%s [%s%s] %s %s"
+        out = "{: <21} [{: <1}{: <1}] {: <16} {: <1}".format(as_str, get_sig_digit(n), SUPERSCRIPT[i], SIZES[i], ALPHA[i])
     else:
         out = as_str
 
@@ -203,14 +207,15 @@ def format_ballpark(n):
 
 def size_chart():
     out = ""
-    for i in range(1, len(SIZES) + 1):
-        if i > 1:
+    for i in range(0, len(SIZES)):
+        if i:
             out += "      "
-        out += "{}{} {} ({})".format(
-            ICONS[-i],
-            ALPHA[len(SIZES) - i],
-            SIZES[-i],
-            i
+
+        out += "{} {} {} ({})".format(
+            ICONS[i],
+            ALPHA[i],
+            SIZES[i],
+            i + 1
         )
     return out
 
@@ -450,7 +455,18 @@ def tcp_echo_client():
     s.close()
     return end
 
+def env_lookup():
+    start = T()
+    x = os.getenv('test_env_var')
+    return T() - start
+
 TESTS = [
+    [
+        "get environmental variable",
+        env_lookup,
+        VERY_SMALL_TEST,
+        "O(1)"
+    ],
     [
         "time()",
         time_time,
@@ -673,7 +689,7 @@ for test in TESTS:
     avg = total / D(test_no)
     z = count_right_zeros(avg)
     z = (len(SIZES)) - min(z, len(SIZES))
-    out = "{: >9} [{: <1}{: <1} {: <1}{: <2} {: <1}] {: <2}: {: <42} {: >5} {: <1}{: <1} ({: <1}: like {: <16}) {: >38}:  {: >20}".format(
+    out = "{: >9} [{: <1}{: <1} {: <1}{: <2} {: <1}] {: <2}: {: <42} {: >5} {: <1} {: <1} ({: <1}: like {: <16}) {: >45}:  {: >15}".format(
         visual_dec(avg),
         SUPERSCRIPT[count_right_zeros(avg)],
         ALPHA[count_right_zeros(avg)],
@@ -695,6 +711,9 @@ for test in TESTS:
     results.append([out, avg])
 
 # Sizes chart.
+print("Based on average death probability except for lighting strike.")
+print("These sizes reflect the number of decimal places.")
+print()
 print(size_chart())
 print(units_chart())
 print()
