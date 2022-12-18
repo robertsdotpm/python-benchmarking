@@ -8,7 +8,7 @@ Open the raw file to view the data easier: https://raw.githubusercontent.com/rob
 Based on average death probability except for lighting strike.
 These sizes reflect the number of decimal places.
 
-❤️ a heart disease (1)      🚗 b vehicle crash (2)      💧 c drowning (3)      🛶 d canoe death (4)      🪂 e sky diving (5)      ⚡ f lightning strike (6)      ✈️ g plane crash (7)      🦈 h shark attack (8)
+❤️ a heart disease (1)      🚗 b vehicle crash (2)      🌊 c drowning (3)      🛶 d canoe death (4)      🪂 e sky diving (5)      ⚡ f lightning strike (6)      ✈️ g plane crash (7)      🦈 h shark attack (8)
  1s 1000x > 1ms 1000x > 1µs 1000x > 1ns
 
  ■■■■■■■■ [⁰a 191 ❤️] ms: tcp echo client                             slow ❤️ a (8: like website RTT     ) 0.191322946549        [1⁰] heart disease    a:  O(1) = excellent
